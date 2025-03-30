@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarita Portfolio website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+     
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing:border-box;
+            font-family: "Poppins", serif;
+        }
+        :root{
+               --white-clr:#fff;
+               --black-clr:#000;
+               --gray-clr:#ECECEC;
+               --green-clr:#63C7AE;
+        }
+        .main-wrapper{
+            min-height: 100vh;
+            background: var(--black-clr);
+        }
+        .working-area{
+            
+            height: 100vh;
+            width: 80%;
+            margin: auto;
+        }
+        .logo{
+            font-size: 1.8rem;
+            color: white;
+            font-weight: bold;
+        }
+        span{
+            color: var(--green-clr);
+        }
+        a{
+            text-decoration: none;
+        }
+        li{
+            list-style: none;
+        }
+
+        .navlist{
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            height: 14vh;
+        }
+        .navlinks{
+            color: white;
+            text-transform: uppercase;
+            font-size: .9rem;
+            letter-spacing: .08rem;
+            position: relative;
+        }
+        .active{
+            color: var(--green-clr);
+        }
+        .navlinks::before,.active::before{
+              content: '';
+              position: absolute;
+              background: var(--green-clr);  
+              width:0 ;
+              height: .1rem;
+              bottom:-10px;
+              transition: .5s ease-in-out;
+        }
+        .active::before{
+              width: 100%;
+        }
+        .navlinks:hover::before{
+              width: 100%;
+        }
+        .navlinks:hover{
+               color: var(--green-clr);
+               transition: .5s ease-in-out;
+        }
+        .fa-bars{
+            color: var(--white-clr);
+            font-size: 1.7rem;
+        }
+        .humburger{
+            display: none;
+        }
+        .hero-section{
+            
+            width: 100%;
+            min-height:calc(100vh - 14vh) ;
+            display: flex;
+            align-items: center;
+            gap: 6rem;
+            isolation:isolate ;
+            overflow: hidden;
+        }
+        h4{
+            color: var(--white-clr);
+            font-weight: 500;
+            letter-spacing: .2rem;
+        }
+        .circle{
+            height: 20px;
+            aspect-ratio: 1;
+            background: var(--green-clr);
+            border-radius: 50%;
+        }
+        .title{
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        h1{
+            font-size: 5rem;
+            color: var(--white-clr);
+            max-width: 600px;
+            letter-spacing:.5rem ;
+            line-height: 6rem;
+        }
+        p{
+            color: var(--gray-clr);
+            font-size:1rem;
+            max-width:600px ;
+            line-height: 1.8rem;
+            letter-spacing: .1rem;
+            margin-block: 1.5rem;
+
+        }
+        .btn-container{
+            display: flex;
+            gap: 1.5rem;
+            margin-block: 2rem;
+
+        }
+        button{
+            background: var(--green-clr);
+            color: white;
+            border: .1rem solid var(--green-clr);
+            padding: .8rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .border-btn{
+            background: transparent;
+        }
+        .border-btn:hover{
+            background: var(--green-clr);
+        }
+        .social-media{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 400px;
+        }
+        .social-icons{
+            display: flex;
+            gap: 1rem;
+        }
+        .fa-brands{
+            color: var(--white-clr);
+            font-size: 1.2rem;
+        }
+        .icon{
+            background: var(--green-clr);
+            width: 40px;
+            aspect-ratio: 1;
+             border-radius: 50%;
+             line-height: 40px;
+             text-align: center;
+             transition: transform.3s ease-in-out;
+        }
+        .icon:hover{
+            transform: translateY(-20%);
+        }
+        .img-container{
+             width: 31rem;
+             aspect-ratio: 1;
+             border-radius: 50%;
+             border: .4rem solid var(--green-clr);
+             background-image: url('/src_img/img.png.jpg');
+             background-position: center;
+             background-size: 100%;
+             background-repeat: no-repeat;
+             position: relative;
+        }
+        .glow{
+            width:17rem ;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: var(--green-clr);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            filter: blur(100px);
+            z-index: -1;
+        }
+        .img-container::before{
+            content: '';
+            position: absolute;
+            inset: -1rem;
+            border-radius: inherit;
+            border: 1.5rem dotted var(--green-clr);
+            animation: rotation 13s linear infinite;
+
+        }
+        .img-container::after{
+            content: '';
+            position: absolute;
+            inset: -2rem;
+            border-radius: inherit;
+            border: .55rem dotted var(--green-clr);
+            animation: rotation 15s linear infinite reverse;
+
+        }
+        @keyframes rotation{
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        
+        
+
+
+
+    </style>
+</head>
+<body>
+   
+         <div class="main-wrapper">
+            <div class="working-area">
+                <!-- Navbar -->
+                <nav class="navbar">
+                    <div class="logo">
+                        <span>S</span>arita Yadav.
+                    </div>
+                    <ul class="navlist">
+                        <li>
+                            <a href="#" class="navlinks active">Home</a>
+                        </li>
+                        <li>
+                            <a href="#" class="navlinks ">Services</a>
+                        </li>
+                        <li>
+                            <a href="#" class="navlinks">Projects</a>
+                        </li>
+                        <li>
+                            <a href="#" class="navlinks">Pages</a>
+                        </li>
+                        <li>
+                            <a href="#" class="navlinks">Blog</a>
+                        </li>
+                        <li>
+                            <a href="#" class="navlinks"
+                            >contact</a>
+                        </li>
+                        
+                        
+                    </ul>
+                    <a href="#" class="hamburger">
+                        <i class="fa-solid fa-bars"></i>
+
+                    </a>
+                    
+                    
+                </nav>
+                <!-- Hero Section -->
+                 <section class="hero-section">
+                        <div class="content">
+                            <div class="title">
+                                <div class="circle"></div>
+                                <h4>Full Stack Developer</h4>
+                            </div>
+                            <h1> Hello! I'am  <span>Sarita</span></h1>
+                            <p>
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum reiciendis obcaecati magnam consectetur adipisci eos ut! Provident laboriosam cupiditate dolore?
+                            </p>
+
+                            <div class="btn-container">
+                                 <button>Let's Talk</button>
+                                 <button class="border-btn">View Projects</button>
+                            </div>
+
+                            <div class="social-media">
+                                <h4>check out My</h4>
+                                <div class="social-icons">
+                                    <a href="#" class="icon">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                    <a href="#" class="icon">
+                                        <i class="fa-brands fa-behance"></i>
+                                    </a>
+                                    <a href="#" class="icon">
+                                        <i class="fa-brands fa-twitter"></i>
+                                    </a>
+
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="img-container">
+                            <div class="glow"></div>
+                            
+
+                        </div>
+                 </section>
+            </div>
+
+
+         </div>
+
+
+</body>
+</html>
